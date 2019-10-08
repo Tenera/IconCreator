@@ -132,7 +132,7 @@ namespace IconCreator
                 throw new ArgumentNullException(nameof(stream));
 
             // validates the pngs
-            ThrowForInvalidPngs(images);
+            //ThrowForInvalidPngs(images);
 
             var orderedImages = images.OrderBy(i => i.Width)
                                            .ThenBy(i => i.Height)
