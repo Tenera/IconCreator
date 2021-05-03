@@ -74,6 +74,39 @@ namespace IconCreator
         }
 
         /// <summary>
+        /// Creates the favicon.
+        /// </summary>
+        /// <param name="sourceImage">The path of the source image in a square, 256*256 format or greater.</param>
+        /// <param name="destinationImage">The path for the icon to create.</param>
+        public static void CreateFavIcon(string sourceImage, string destinationImage)
+        {
+            using (var source = (Bitmap)Image.FromFile(sourceImage))
+            {
+                if (source.Width != source.Height)
+                {
+                    throw new InvalidOperationException("The source image must be a square image");
+                }
+
+                if (source.Width < 16)
+                {
+                    throw new InvalidOperationException("Dimensions of the source image must be at least 16x16");
+                }
+
+                var png16 = source.Width > 16 ? ResizeImage(source, 16, 16) : source;
+
+                using (var stream = new FileStream(destinationImage, FileMode.Create))
+                {
+                    SavePngsAsIcon(new[] { png16 }, stream);
+                }
+
+                if (png16 != source)
+                {
+                    png16.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
         /// Resize the image to the specified width and height.
         /// </summary>
         /// <param name="image">The image to resize.</param>

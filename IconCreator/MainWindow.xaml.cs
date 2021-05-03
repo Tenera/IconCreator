@@ -76,6 +76,29 @@ namespace IconCreator
                 }
             }
         }
+        
+        private void CreateFavicon_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SaveFileDialog
+            {
+                DefaultExt = ".ico",
+                Filter = "Icon file|*.ico",
+                Title = "Select icon file",
+                OverwritePrompt = true
+            };
+            if (dialog.ShowDialog() == true)
+            {
+                try
+                {
+                    IconFactory.CreateFavIcon(_fileName, dialog.FileName);
+                    MessageBox.Show($"Icon '{dialog.FileName}' was created successfully", "Icon created", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error creating icon", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }
+        }
 
         private static string BytesToString(long byteCount)
         {
