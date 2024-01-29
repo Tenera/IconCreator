@@ -33,7 +33,7 @@ public static class IconFactory
     private const byte PngColorsInPalette = 0;
     private const ushort PngColorPlanes = 1;
 
-    private static readonly Guid MsFormatPng = new Guid("{B96B3CAA-0728-11D3-9D7B-0000F81EF32E}");
+    private static readonly Guid MsFormatPng = new("{B96B3CAA-0728-11D3-9D7B-0000F81EF32E}");
 
     /// <summary>
     /// Creates the multi image icon.
@@ -66,14 +66,9 @@ public static class IconFactory
 
     public static void ValidateSize(Size size)
     {
-        if (size.Width != size.Height)
+        if (size.Width != size.Height || size.Width < 256)
         {
-            throw new InvalidOperationException($"The source image must be a square image (current dimensions: {size.Width} x {size.Height})");
-        }
-
-        if (size.Width < 256)
-        {
-            throw new InvalidOperationException($"Dimensions of the source image must be at least 256x256 (current dimensions: {size.Width} x {size.Height})");
+            throw new InvalidOperationException($"The source image must be a square image and at least 256x256 (current dimensions: {size.Width} x {size.Height})");
         }
     }
 
@@ -121,12 +116,10 @@ public static class IconFactory
         graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
         graphics.SmoothingMode = SmoothingMode.HighQuality;
         graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                
-        using (var wrapMode = new ImageAttributes())
-        {
-            wrapMode.SetWrapMode(WrapMode.TileFlipXY);
-            graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-        }
+
+        using var wrapMode = new ImageAttributes();
+        wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+        graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
 
         return destImage;
     }
@@ -153,17 +146,15 @@ public static class IconFactory
     /// </exception>
     private static void SavePngsAsIcon(IList<Bitmap> images, Stream stream)
     {
-        if (images == null)
-            throw new ArgumentNullException(nameof(images));
-        if (stream == null)
-            throw new ArgumentNullException(nameof(stream));
+        ArgumentNullException.ThrowIfNull(images);
+        ArgumentNullException.ThrowIfNull(stream);
 
         // validates the pngs
         //ThrowForInvalidPngs(images);
 
         var orderedImages = images.OrderBy(i => i.Width)
-            .ThenBy(i => i.Height)
-            .ToArray();
+                            .ThenBy(i => i.Height)
+                            .ToArray();
 
         using var writer = new BinaryWriter(stream);
         // write the header
