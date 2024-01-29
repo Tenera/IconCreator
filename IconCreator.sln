@@ -1,7 +1,7 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconCreator", "IconCreator\IconCreator.csproj", "{8B3D785B-F3B5-4E41-8398-7E28AB1D966D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IconCreator", "IconCreator\IconCreator.csproj", "{8B3D785B-F3B5-4E41-8398-7E28AB1D966D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
