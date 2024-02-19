@@ -3,7 +3,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
-using Size = System.Drawing.Size;
 
 namespace IconCreator;
 
@@ -36,7 +35,7 @@ public partial class MainWindow
                 Filename.Text = fileInfo.FullName;
                 FileSize.Text = BytesToString(fileInfo.Length);
                 Dimensions.Text = $"{image.PixelWidth} x {image.PixelHeight}";
-                IconFactory.ValidateSize(new Size(image.PixelWidth, image.PixelHeight));
+                IconFactory.ValidateSize(new SixLabors.ImageSharp.Size(image.PixelWidth, image.PixelHeight));
             }
         }
         catch (Exception ex)
