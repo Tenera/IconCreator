@@ -25,11 +25,11 @@
 		<StackPanel Orientation="Horizontal">
 			<Button Content="Select image" Command="{CompiledBinding SelectImage}" Margin="10" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" />
 			<Button Content="Create icon" Command="{CompiledBinding CreateIcon}" Margin="0,10,10,10" VerticalAlignment="Top" Width="120"  HorizontalContentAlignment="Center" IsVisible="{CompiledBinding HasImage, Mode=OneWay}" />
-			<Button Content="Create favicon" Command="{CompiledBinding CreateFavicon}" Margin="0,10" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" IsVisible="{CompiledBinding HasImage, Mode=OneWay}" />
+			<Button Content="Create favicon" Command="{CompiledBinding CreateIcon}" CommandParameter="favicon" Margin="0,10" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" IsVisible="{CompiledBinding HasImage, Mode=OneWay}" />
 		</StackPanel>
 
         <Border Grid.Row="1" Margin="10,0,10,0" BorderBrush="DimGray" BorderThickness="1">
-            <Image Stretch="None" Margin="0,6,0,0" Source="{CompiledBinding  Image, Mode=OneWay}"/>
+            <Image Stretch="Uniform" Margin="0,6,0,0" Source="{CompiledBinding  Image, Mode=OneWay}"/>
         </Border>
 
         <Border Grid.Row="2" Grid.Column="0" Margin="10" VerticalAlignment="Center" Padding="10" CornerRadius="5" 
