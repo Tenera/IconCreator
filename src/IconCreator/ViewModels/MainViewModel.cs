@@ -2,9 +2,10 @@
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
+using Avalonia.Controls.Notifications;
 using Avalonia.Platform.Storage;
-using MsBox.Avalonia;
-using MsBox.Avalonia.Enums;
+using IconCreator.Views;
+using SukiUI.Toasts;
 
 namespace IconCreator.ViewModels;
 
@@ -97,8 +98,13 @@ public class MainViewModel(TopLevel topLevel) : ViewModelBase
             FileName = null;
             FileSize = null;
             Dimensions = null;
-            var box = MessageBoxManager.GetMessageBoxStandard("Error selecting the image", ex.GetBaseException().Message, ButtonEnum.Ok, Icon.Warning);
-            await box.ShowAsync();
+            MainWindow.ToastManager.CreateToast()
+                .WithTitle("Error selecting the image")
+                .WithContent(ex.GetBaseException().Message)
+                .OfType(NotificationType.Error)
+                .Dismiss().ByClicking()
+                .Dismiss().After(TimeSpan.FromSeconds(5))
+                .Queue();
         }
 
         OnPropertyChanged(nameof(HasImage));
@@ -127,13 +133,23 @@ public class MainViewModel(TopLevel topLevel) : ViewModelBase
                     IconFactory.CreateMultiImageIcon(FileName!, file.Path.LocalPath);
                 }
                 
-                var box = MessageBoxManager.GetMessageBoxStandard("Icon created", $"Icon '{file.Path.LocalPath}' was created successfully", ButtonEnum.Ok, Icon.Info);
-                await box.ShowAsync();
+                MainWindow.ToastManager.CreateToast()
+                    .WithTitle("Icon created")
+                    .WithContent($"Icon '{file.Path.LocalPath}' was created successfully")
+                    .OfType(NotificationType.Success)
+                    .Dismiss().ByClicking()
+                    .Dismiss().After(TimeSpan.FromSeconds(5))
+                    .Queue();
             }
             catch (Exception ex)
             {
-                var box = MessageBoxManager.GetMessageBoxStandard("Error creating icon", ex.GetBaseException().Message, ButtonEnum.Ok, Icon.Warning);
-                await box.ShowAsync();
+                MainWindow.ToastManager.CreateToast()
+                    .WithTitle("Error creating icon")
+                    .WithContent(ex.GetBaseException().Message)
+                    .OfType(NotificationType.Error)
+                    .Dismiss().ByClicking()
+                    .Dismiss().After(TimeSpan.FromSeconds(5))
+                    .Queue();
             }
         }
     }
