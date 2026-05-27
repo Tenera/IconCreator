@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls;
 
-namespace IconCreator.Avalonia.Views;
+namespace IconCreator.Views;
 
 public partial class MainView : UserControl
 {

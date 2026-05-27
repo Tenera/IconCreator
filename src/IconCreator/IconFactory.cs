@@ -7,7 +7,7 @@ using SixLabors.ImageSharp.Formats.Png;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.ImageSharp.Processing.Processors.Quantization;
 
-namespace IconCreator.Avalonia;
+namespace IconCreator;
 
 /// <summary>
 /// Provides methods for creating icons.

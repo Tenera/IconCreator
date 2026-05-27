@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia;
 
-namespace IconCreator.Avalonia;
+namespace IconCreator;
 
 class Program
 {

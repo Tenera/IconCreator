@@ -33,7 +33,7 @@ jobs:
 
       - name: Publish
         run: >
-          dotnet publish src/IconCreator.Avalonia/IconCreator.Avalonia.csproj
+          dotnet publish src/IconCreator/IconCreator.csproj
           --configuration Release
           --runtime ${{ matrix.rid }}
           --self-contained
@@ -48,7 +48,7 @@ jobs:
 
       - name: Set executable permission
         if: ${{ !contains(matrix.rid, 'win') }}
-        run: chmod +x publish/${{ matrix.name }}/IconCreator.Avalonia
+        run: chmod +x publish/${{ matrix.name }}/IconCreator
 
       - name: Zip artifact
         run: cd publish && zip -r ../${{ matrix.name }}.zip ${{ matrix.name }}

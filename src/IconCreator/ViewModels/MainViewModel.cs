@@ -6,7 +6,7 @@ using Avalonia.Platform.Storage;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 
-namespace IconCreator.Avalonia.ViewModels;
+namespace IconCreator.ViewModels;
 
 public class MainViewModel(TopLevel topLevel) : ViewModelBase
 {
@@ -120,11 +120,11 @@ public class MainViewModel(TopLevel topLevel) : ViewModelBase
             {
                 if (type == "favicon")
                 {
-                    IconFactory.CreateFavIcon(FileName, file.Path.LocalPath);
+                    IconFactory.CreateFavIcon(FileName!, file.Path.LocalPath);
                 }
                 else
                 {
-                    IconFactory.CreateMultiImageIcon(FileName, file.Path.LocalPath);
+                    IconFactory.CreateMultiImageIcon(FileName!, file.Path.LocalPath);
                 }
                 
                 var box = MessageBoxManager.GetMessageBoxStandard("Icon created", $"Icon '{file.Path.LocalPath}' was created successfully", ButtonEnum.Ok, Icon.Info);

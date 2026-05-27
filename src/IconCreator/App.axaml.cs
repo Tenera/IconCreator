@@ -3,10 +3,10 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
-using IconCreator.Avalonia.ViewModels;
-using IconCreator.Avalonia.Views;
+using IconCreator.ViewModels;
+using IconCreator.Views;
 
-namespace IconCreator.Avalonia;
+namespace IconCreator;
 
 public partial class App : Application
 {
@@ -21,7 +21,7 @@ public partial class App : Application
         {
             var view = new MainWindow();
             desktop.MainWindow = view;
-            view.DataContext = new MainViewModel(TopLevel.GetTopLevel(desktop.MainWindow));
+            view.DataContext = new MainViewModel(view);
         }
         base.OnFrameworkInitializationCompleted();
     }

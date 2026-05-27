@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace IconCreator.Avalonia.ViewModels;
+namespace IconCreator.ViewModels;
 
 public class ViewModelBase : ObservableObject
 {
