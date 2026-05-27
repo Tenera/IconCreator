@@ -2,6 +2,8 @@
 
 A cross-platform desktop application for creating `.ico` icon files from images. Built with [Avalonia UI](https://avaloniaui.net/) and [SukiUI](https://github.com/kikipoulet/SukiUI).
 
+![Screenshot](Resources/Screenshot.png)
+
 ## Features
 
 - Create multi-size `.ico` files (16x16 through 256x256)
