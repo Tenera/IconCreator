@@ -8,7 +8,7 @@
                    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                    x:Class="IconCreator.Views.MainWindow"
                    x:DataType="vm:MainViewModel"
-                   Title="Icon Creator" BackgroundStyle="Bubble">
+                   Title="Icon Creator" Icon="/Assets/image.ico" BackgroundStyle="Bubble">
 
     <sukiUi:SukiWindow.LogoContent>
         <Image Margin="0" Height="32" Width="32"
