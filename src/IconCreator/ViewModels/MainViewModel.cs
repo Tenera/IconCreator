@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Media.Imaging;
 using Avalonia.Controls.Notifications;
+using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
+using Avalonia.Styling;
 using IconCreator.Views;
+using SukiUI;
 using SukiUI.Toasts;
 
 namespace IconCreator.ViewModels;
@@ -15,6 +18,24 @@ public class MainViewModel(TopLevel topLevel) : ViewModelBase
     private string? _fileSize;
     private string? _dimensions;
     private Bitmap? _image;
+    private bool _isDarkTheme = Application.Current?.ActualThemeVariant == ThemeVariant.Dark;
+
+    public bool IsDarkTheme
+    {
+        get => _isDarkTheme;
+        set
+        {
+            if (value == _isDarkTheme) return;
+            _isDarkTheme = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public void ToggleTheme()
+    {
+        SukiTheme.GetInstance().SwitchBaseTheme();
+        IsDarkTheme = !IsDarkTheme;
+    }
 
     public bool HasImage => _image != null;
 

@@ -1,17 +1,29 @@
 <sukiUi:SukiWindow xmlns="https://github.com/avaloniaui"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:sukiUi="clr-namespace:SukiUI.Controls;assembly=SukiUI"
+                   xmlns:vm="clr-namespace:IconCreator.ViewModels"
                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                    xmlns:views="clr-namespace:IconCreator.Views"
                    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                    x:Class="IconCreator.Views.MainWindow"
+                   x:DataType="vm:MainViewModel"
                    Title="Icon Creator" BackgroundStyle="Bubble">
 
     <sukiUi:SukiWindow.LogoContent>
         <Image Margin="0" Height="32" Width="32"
                Source="avares://IconCreator/Assets/image.ico"/>
     </sukiUi:SukiWindow.LogoContent>
+    <sukiUi:SukiWindow.RightWindowTitleBarControls>
+        <Button Command="{CompiledBinding ToggleTheme}" Padding="8,4" ToolTip.Tip="Toggle theme">
+            <Panel>
+                <PathIcon Data="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"
+                          IsVisible="{CompiledBinding !IsDarkTheme}" Width="16" Height="16" />
+                <PathIcon Data="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79zM4 10.5H1v2h3zm9-9.95h-2V3.5h2zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79zM20 10.5v2h3v-2zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41z"
+                          IsVisible="{CompiledBinding IsDarkTheme}" Width="16" Height="16" />
+            </Panel>
+        </Button>
+    </sukiUi:SukiWindow.RightWindowTitleBarControls>
     <sukiUi:SukiWindow.Hosts>
         <sukiUi:SukiToastHost Name="ToastHost" />
     </sukiUi:SukiWindow.Hosts>
